@@ -19,9 +19,9 @@ export const svgstore = (options = {}) => {
         const iconsDir = path.resolve(inputFolder);
         for (const file of fs.readdirSync(iconsDir)) {
           const filepath = path.join(iconsDir, file);
-          const svgid = path.parse(file).name
+          const svgId = path.parse(file).name
           let code = fs.readFileSync(filepath, { encoding: 'utf-8' });
-          sprites.add(svgid, code)
+          sprites.add(svgId, code)
         }
         const { data: code } = optimize(sprites.toString({ inline: options.inline }), {
           plugins: [
@@ -31,23 +31,23 @@ export const svgstore = (options = {}) => {
           ]
         })
         return `const div = document.createElement('div')
-div.innerHTML = \`${code}\`
-const svg = div.getElementsByTagName('svg')[0]
-if (svg) {
-  svg.style.position = 'absolute'
-  svg.style.width = 0
-  svg.style.height = 0
-  svg.style.overflow = 'hidden'
-  svg.setAttribute("aria-hidden", "true")
-}
-// listen dom ready event
-document.addEventListener('DOMContentLoaded', () => {
-  if (document.body.firstChild) {
-    document.body.insertBefore(div, document.body.firstChild)
-  } else {
-    document.body.appendChild(div)
-  }
-})`
+                div.innerHTML = \`${code}\`
+                const svg = div.getElementsByTagName('svg')[0]
+                if (svg) {
+                  svg.style.position = 'absolute'
+                  svg.style.width = 0
+                  svg.style.height = 0
+                  svg.style.overflow = 'hidden'
+                  svg.setAttribute("aria-hidden", "true")
+                }
+                // listen dom ready event
+                document.addEventListener('DOMContentLoaded', () => {
+                  if (document.body.firstChild) {
+                    document.body.insertBefore(div, document.body.firstChild)
+                  } else {
+                    document.body.appendChild(div)
+                  }
+                })`
       }
     }
   }
