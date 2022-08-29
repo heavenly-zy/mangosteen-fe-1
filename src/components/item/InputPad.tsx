@@ -23,10 +23,10 @@ export const InputPad = defineComponent({
     const appendText = (n: number | string) => {
       const nString = n.toString()
       const dotIndex = refAmount.value.indexOf('.')
-      if (refAmount.value.length >= 13) {
+      if (refAmount.value.length >= 13) { // 限制输入的最大长度
         return
       }
-      if (dotIndex >= 0 && refAmount.value.length - dotIndex > 2) {
+      if (dotIndex >= 0 && refAmount.value.length - dotIndex > 2) { // 不超过两位小数
         return
       }
       if (nString === '.') {
