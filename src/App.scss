@@ -10,3 +10,15 @@ body {
   font-size: 16px;
   color: #333;
 }
+
+.customTabs_tabs > .customTabs_tabs_nav {
+  justify-content: flex-start;
+}
+
+.customTabs_tabs_nav {
+  & > &_item {
+    flex-grow: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
