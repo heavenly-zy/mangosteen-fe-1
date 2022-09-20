@@ -1,3 +1,4 @@
+import { Overlay } from 'vant';
 import { defineComponent, PropType, reactive, ref } from 'vue';
 import { MainLayout } from '../../layouts/MainLayout';
 import { Icon } from '../../shared/Icon';
@@ -33,12 +34,13 @@ export const ItemList = defineComponent({
         end: time.lastDayOfYear()
       }
     ]
+    const refOverlayVisible = ref(false)
     return () => (
       <MainLayout>{
         {
           icon: () => <Icon name="menu" />,
           title: () => '山竹记账',
-          default: () => (
+          default: () => <>
             <Tabs classPrefix={'customTabs'} v-model:selected={refSelected.value}>
               <Tab name="本月">
                 <ItemSummary
@@ -61,7 +63,24 @@ export const ItemList = defineComponent({
                   endDate={customTime.end.format()} />
               </Tab>
             </Tabs>
-          )
+            <Overlay show={refOverlayVisible.value} class={s.overlay} >
+              <div class={s.overlay_inner}>
+                <header>
+                  请选择时间
+                </header>
+                <main>
+                  <form>
+                    <div>
+
+                    </div>
+                    <div>
+
+                    </div>
+                  </form>
+                </main>
+              </div>
+            </Overlay>
+          </>
         }
       }</MainLayout>
     )

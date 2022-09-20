@@ -1,4 +1,5 @@
 :root {
+  --bg: white;
   --amount-text: #53A867;
   --button-bg: #5C33BE;
   --button-bg-danger: #E10505;
@@ -8,6 +9,7 @@
   --button-radius: 8px;
   --button-text: white;
   --date-text: #999999;
+  --dialog-header-text: white;
   --float-button-bg: var(--button-bg);
   --float-button-text: white;
   --navbar-bg-end: var(--welcome-bg-end);
