@@ -4,8 +4,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
   background: var(--overlay-mask-bg);
+  z-index: var(--z-index-van-overlay);
   &_inner {
     background: var(--bg);
     width: 80vw;
