@@ -36,7 +36,8 @@ export const SignInPage = defineComponent({
         { key: 'code', type: 'required', message: '必填' },
       ]))
       if (!hasError(errors)) {
-        const response = await http.post('/session', formData);
+        const response = await http.post<{ jwt: string }>('/session', formData)
+        localStorage.setItem('jwt', response.data.jwt)
       }
     }
     const onError = (error: any) => {
