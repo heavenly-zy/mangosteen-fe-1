@@ -17,7 +17,7 @@ export class Http {
   // read
   get<R = unknown>(
     url: string,
-    query?: Record<string, string>,
+    query?: Record<string, JSONValue>,
     config?: GetConfig
   ) {
     return this.instance.request<R>({
