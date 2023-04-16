@@ -14,6 +14,8 @@ export const mockSession: Mock = (config) => {
   ];
 };
 
+let id = 0;
+
 export const mockTagIndex: Mock = (config) => {
   const { kind, page } = config.params;
   const per_page = 25;
@@ -27,7 +29,6 @@ export const mockTagIndex: Mock = (config) => {
     resources: createTag(n),
     pager: createPaper(page),
   });
-  let id = 0;
   const createId = () => {
     id += 1;
     return id;
