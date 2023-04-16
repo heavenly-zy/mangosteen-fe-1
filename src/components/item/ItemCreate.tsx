@@ -22,10 +22,10 @@ export const ItemCreate = defineComponent({
           <div class={s.wrapper}>
             <Tabs v-model:selected={refKind.value} class={s.tabs}>
               <Tab name="支出">
-                <Tags kind="expenses" />
+                <Tags kind="expenses" key="expenses" />
               </Tab>
               <Tab name="收入">
-                <Tags kind="income" />
+                <Tags kind="income" key="income" />
               </Tab>
             </Tabs>
             <div class={s.inputPad_wrapper}>
