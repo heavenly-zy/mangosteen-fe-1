@@ -39,10 +39,6 @@ export const ItemCreate = defineComponent({
       ).catch(onError)
       router.push("/items")
     }
-    // const refKind = ref('支出');
-    // const refTagId = ref<number>()
-    // const refHappenAt = ref<string>(new Date().toISOString())
-    // const refAmount = ref<number>(0)
     return () => (
       <MainLayout>{{
         icon: () => <Icon name="left" class={s.navIcon} />,
