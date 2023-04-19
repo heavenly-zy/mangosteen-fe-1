@@ -12,6 +12,7 @@ Vant 中有个别组件是以函数的形式提供的，
 无法自动引入对应的样式，因此需要手动引入样式。
 ------------------------------------- */
 import "vant/es/toast/style"
+import "vant/es/dialog/style"
 
 const router = createRouter({ history, routes })
 
