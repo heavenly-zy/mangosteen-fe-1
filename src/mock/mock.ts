@@ -34,6 +34,10 @@ export const mockSession: Mock = (config) => {
 };
 
 let id = 0;
+const createId = () => {
+  id += 1;
+  return id;
+};
 
 export const mockTagIndex: Mock = (config) => {
   const { kind, page } = config.params;
@@ -48,10 +52,6 @@ export const mockTagIndex: Mock = (config) => {
     resources: createTag(n),
     pager: createPaper(page),
   });
-  const createId = () => {
-    id += 1;
-    return id;
-  };
   const createTag = (n = 1, attrs?: any) =>
     Array.from({ length: n }).map(() => ({
       id: createId(),
@@ -73,3 +73,14 @@ export const mockTagIndex: Mock = (config) => {
     return [200, createBody(1)];
   }
 };
+
+export const mockTagShow: Mock = (config) => {
+  const createTag = (attrs?: any) => ({
+    id: createId(),
+    name: faker.lorem.word(),
+    sign: faker.internet.emoji(),
+    kind: "expenses",
+    ...attrs
+  })
+  return [200, { resource: createTag() }]
+}
