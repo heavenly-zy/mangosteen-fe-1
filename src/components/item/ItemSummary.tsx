@@ -4,6 +4,7 @@ import s from './ItemSummary.module.scss';
 import { http } from '../../shared/Http';
 import { Button } from '../../shared/Button';
 import { Money } from '../../shared/Money';
+import { DateTime } from '../../shared/DateTime';
 
 export const ItemSummary = defineComponent({
   props: {
@@ -63,7 +64,9 @@ export const ItemSummary = defineComponent({
                     ￥<Money value={item.amount} />
                   </span>
                 </div>
-                <div class={s.time}>{item.happen_at}</div>
+                <div class={s.time}>
+                  <DateTime value={item.happen_at} />
+                </div>
               </div>
             </li>
           ))}
