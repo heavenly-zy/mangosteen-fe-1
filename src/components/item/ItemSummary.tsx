@@ -1,4 +1,4 @@
-import { computed, defineComponent, onMounted, PropType, reactive, ref } from 'vue';
+import { computed, defineComponent, onMounted, PropType, reactive, ref, watch } from 'vue';
 import { FloatButton } from '../../shared/FloatButton';
 import s from './ItemSummary.module.scss';
 import { http } from '../../shared/Http';
@@ -38,15 +38,33 @@ export const ItemSummary = defineComponent({
     const itemsBalance = reactive({
       expenses: 0, income: 0, balance: 0
     })
-    onMounted(async ()=>{
-      if(!props.startDate || !props.endDate){ return }
-      const response = await http.get('/items/balance', {
+    const fetchItemsBalance = async () => {
+      if (!props.startDate || !props.endDate) return
+      const response = await http.get("/items/balance", {
         happen_after: props.startDate,
         happen_before: props.endDate,
-        _mock: 'itemIndexBalance',
+        _mock: "itemIndexBalance"
       })
       Object.assign(itemsBalance, response.data)
-    })
+    }
+    onMounted(fetchItemsBalance)
+    watch(
+      () => [props.startDate, props.endDate],
+      () => {
+        // refresh items
+        items.value = []
+        hasMore.value = false
+        page.value = 0
+        fetchItems()
+        // refresh itemsBalance
+        Object.assign(itemsBalance, {
+          expenses: 0,
+          income: 0,
+          balance: 0
+        })
+        fetchItemsBalance()
+      }
+    )
     const itemsContent = computed(() => (
       <>
         <ul class={s.total}>
