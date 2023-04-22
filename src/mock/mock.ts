@@ -85,14 +85,15 @@ export const mockTagShow: Mock = (config) => {
   return [200, { resource: createTag() }]
 }
 
+const createTag = (attrs?: any) => ({
+  id: createId(),
+  name: faker.lorem.word(),
+  sign: faker.internet.emoji(),
+  kind: "expenses",
+  ...attrs
+})
+
 export const mockTagEdit: Mock = (config) => {
-  const createTag = (attrs?: any) => ({
-    id: createId(),
-    name: faker.lorem.word(),
-    sign: faker.internet.emoji(),
-    kind: "expenses",
-    ...attrs
-  })
   return [200, { resource: createTag() }]
 }
 
@@ -111,6 +112,7 @@ export const mockItemIndex: Mock = (config) => {
       user_id: createId(),
       amount: Math.floor(Math.random() * 10000),
       tags_id: [createId()],
+      tags: [createTag()],
       happen_at: faker.date.past().toISOString(),
       kind: config.params.kind
     }))
