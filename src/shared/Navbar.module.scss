@@ -1,4 +1,4 @@
-.navbar{
+.navbar {
   background: linear-gradient(to bottom, var(--navbar-bg-start), var(--navbar-bg-end));
   color: var(--navbar-text);
   fill: var(--navbar-text);
@@ -7,11 +7,11 @@
   align-items: center;
   padding: 40px 16px 12px;
 }
-.title_wrapper{
+.title_wrapper {
   font-size: 24px;
   margin-left: 12px;
 }
-.icon_wrapper{
+.icon_wrapper {
   width: 36px;
   height: 36px;
   display: flex;

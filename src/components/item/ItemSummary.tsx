@@ -1,10 +1,10 @@
-import { computed, defineComponent, onMounted, PropType, reactive, ref, watch } from 'vue';
-import { FloatButton } from '../../shared/FloatButton';
-import s from './ItemSummary.module.scss';
-import { http } from '../../shared/Http';
-import { Button } from '../../shared/Button';
-import { Money } from '../../shared/Money';
-import { DateTime } from '../../shared/DateTime';
+import { computed, defineComponent, onMounted, PropType, reactive, ref, watch } from "vue"
+import { FloatButton } from "../../shared/FloatButton"
+import s from "./ItemSummary.module.scss"
+import { http } from "../../shared/Http"
+import { Button } from "../../shared/Button"
+import { Money } from "../../shared/Money"
+import { DateTime } from "../../shared/DateTime"
 
 export const ItemSummary = defineComponent({
   props: {
@@ -36,7 +36,9 @@ export const ItemSummary = defineComponent({
     }
     onMounted(fetchItems)
     const itemsBalance = reactive({
-      expenses: 0, income: 0, balance: 0
+      expenses: 0,
+      income: 0,
+      balance: 0
     })
     const fetchItemsBalance = async () => {
       if (!props.startDate || !props.endDate) return

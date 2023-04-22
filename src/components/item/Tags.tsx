@@ -1,20 +1,20 @@
-import { defineComponent, PropType, ref } from 'vue';
-import { Button } from '../../shared/Button';
-import { http } from '../../shared/Http';
-import { Icon } from '../../shared/Icon';
-import { useTags } from '../../shared/useTags';
-import s from './Tags.module.scss';
-import { RouterLink, useRouter } from 'vue-router';
+import { defineComponent, PropType, ref } from "vue"
+import { Button } from "../../shared/Button"
+import { http } from "../../shared/Http"
+import { Icon } from "../../shared/Icon"
+import { useTags } from "../../shared/useTags"
+import s from "./Tags.module.scss"
+import { RouterLink, useRouter } from "vue-router"
 
 export const Tags = defineComponent({
   props: {
     kind: {
-      type: String as PropType<'expenses' | 'income'>,
-      required: true,
+      type: String as PropType<"expenses" | "income">,
+      required: true
     },
     selected: Number
   },
-  emits: ['update:selected'],
+  emits: ["update:selected"],
   setup: (props, context) => {
     const router = useRouter()
     const { tags, hasMore, fetchTags } = useTags((page) => {
@@ -29,7 +29,7 @@ export const Tags = defineComponent({
     }
     const timer = ref<number>()
     const currentTag = ref<HTMLDivElement>()
-    const onLongPress = (tagId: Tag['id']) => {
+    const onLongPress = (tagId: Tag["id"]) => {
       router.push(`/tags/${tagId}/edit?kind=${props.kind}&return_to=${router.currentRoute.value.fullPath}`)
     }
     const onTouchStart = (e: TouchEvent, tag: Tag) => {
@@ -79,5 +79,5 @@ export const Tags = defineComponent({
         </div>
       </>
     )
-  },
-});
+  }
+})

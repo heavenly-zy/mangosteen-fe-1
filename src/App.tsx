@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue';
-import { RouterView } from 'vue-router';
-import './App.scss';
+import { defineComponent } from "vue"
+import { RouterView } from "vue-router"
+import "./App.scss"
 
 export const App = defineComponent({
   setup() {
@@ -8,6 +8,6 @@ export const App = defineComponent({
       <div class="page">
         <RouterView />
       </div>
-    );
-  },
-});
+    )
+  }
+})

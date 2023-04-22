@@ -1,10 +1,10 @@
-import { computed, defineComponent, onMounted, PropType, ref } from 'vue';
-import { FormItem } from '../../shared/Form';
-import s from './Charts.module.scss';
-import { Bars } from './Bars';
-import { LineChart } from './LineChart';
-import { PieChart } from './PieChart';
-import { http } from '../../shared/Http';
+import { computed, defineComponent, onMounted, PropType, ref } from "vue"
+import { FormItem } from "../../shared/Form"
+import s from "./Charts.module.scss"
+import { Bars } from "./Bars"
+import { LineChart } from "./LineChart"
+import { PieChart } from "./PieChart"
+import { http } from "../../shared/Http"
 
 type Data1Item = { happen_at: string; amount: number }
 type Data1 = Data1Item[]
@@ -38,10 +38,15 @@ export const Charts = defineComponent({
     })
     return () => (
       <div class={s.wrapper}>
-        <FormItem label='类型' type="select" options={[
-          { value: 'expenses', text: '支出' },
-          { value: 'income', text: '收入' }
-        ]} v-model={kind.value} />
+        <FormItem
+          label="类型"
+          type="select"
+          options={[
+            { value: "expenses", text: "支出" },
+            { value: "income", text: "收入" }
+          ]}
+          v-model={kind.value}
+        />
         <LineChart data={betterData1.value} />
         <PieChart />
         <Bars />
