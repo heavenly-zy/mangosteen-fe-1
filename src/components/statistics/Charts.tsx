@@ -27,28 +27,15 @@ export const Charts = defineComponent({
     const kind = ref("expenses")
     const data1 = ref<Data1>([])
     const betterData1 = computed<[string, number][]>(() => {
-      if (!props.startDate || !props.endDate) {
-        return []
-      }
-      const array = []
+      if (!props.startDate || !props.endDate) return []
       const diff = new Date(props.endDate).getTime() - new Date(props.startDate).getTime()
-      // 不完全归纳，得出 n = diff / DAY + 1
-      // n 表示折线图的 x 轴上的刻度数
-      // start 1 end 2 diff/day = 1 n = 2
-      // start 1 end 3 diff/day = 2 n = 3
       const n = diff / DAY + 1
-      let data1Index = 0
-      for (let i = 0; i < n; i++) {
-        // 这里添加了 "T00:00:00.000+0800"，因为需要和后端返回的时间格式保持一致
+      return Array.from({ length: n }).map((_, i) => {
         const time = new Time(props.startDate + "T00:00:00.000+0800").add(i, "day").getTimestamp()
-        if (data1.value[data1Index] && new Date(data1.value[data1Index].happen_at).getTime() === time) {
-          array.push([new Date(time).toISOString(), data1.value[data1Index].amount])
-          data1Index += 1
-        } else {
-          array.push([new Date(time).toISOString(), 0])
-        }
-      }
-      return array as [string, number][]
+        const item = data1.value[0]
+        const amount = item && new Date(item.happen_at).getTime() === time ? data1.value.shift()!.amount : 0
+        return [new Date(time).toISOString(), amount]
+      })
     })
 
     onMounted(async () => {
