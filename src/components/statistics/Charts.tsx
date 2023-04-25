@@ -40,13 +40,16 @@ export const Charts = defineComponent({
       })
     })
     const fetchData1 = async () => {
-      const response = await http.get<{ groups: Data1; summary: number }>("/items/summary", {
-        happen_after: props.startDate,
-        happen_before: props.endDate,
-        kind: kind.value,
-        group_by: 'happen_at',
-        _mock: "itemSummary"
-      })
+      const response = await http.get<{ groups: Data1; summary: number }>(
+        "/items/summary",
+        {
+          happen_after: props.startDate,
+          happen_before: props.endDate,
+          kind: kind.value,
+          group_by: "happen_at"
+        },
+        { _mock: "itemSummary", _autoLoading: true }
+      )
       data1.value = response.data.groups
     }
     onMounted(fetchData1)
@@ -62,13 +65,16 @@ export const Charts = defineComponent({
       }))
     )
     const fetchData2 = async () => {
-      const response = await http.get<{ groups: Data2; summary: number }>("/items/summary", {
-        happen_after: props.startDate,
-        happen_before: props.endDate,
-        kind: kind.value,
-        group_by: "tag_id",
-        _mock: "itemSummary"
-      })
+      const response = await http.get<{ groups: Data2; summary: number }>(
+        "/items/summary",
+        {
+          happen_after: props.startDate,
+          happen_before: props.endDate,
+          kind: kind.value,
+          group_by: "tag_id"
+        },
+        { _mock: "itemSummary" }
+      )
       data2.value = response.data.groups
     }
     onMounted(fetchData2)
