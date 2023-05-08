@@ -5,6 +5,9 @@ import { http } from "../../shared/Http"
 import { Button } from "../../shared/Button"
 import { Money } from "../../shared/Money"
 import { DateTime } from "../../shared/DateTime"
+import { Center } from "../../shared/Center"
+import { Icon } from "../../shared/Icon"
+import { RouterLink } from "vue-router"
 
 export const ItemSummary = defineComponent({
   props: {
@@ -114,10 +117,24 @@ export const ItemSummary = defineComponent({
         </div>
       </>
     ))
+    const startContent = (
+      <>
+        <Center class={s.pig_wrapper}>
+          <Icon name="pig" class={s.pig} />
+        </Center>
+        <div class={s.button_wrapper}>
+          <RouterLink to="/items/create">
+            <Button class={s.button}>开始记账</Button>
+          </RouterLink>
+        </div>
+      </>
+    )
     return () => (
       <div class={s.wrapper}>
-        {items.value ? itemsContent.value : <div>记录为空</div>}
-        <FloatButton iconName="add" />
+        {items.value && items.value.length > 0 ? itemsContent.value : startContent}
+        <RouterLink to="/items/create">
+          <FloatButton iconName="add" />
+        </RouterLink>
       </div>
     )
   }

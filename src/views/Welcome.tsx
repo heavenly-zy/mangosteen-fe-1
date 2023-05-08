@@ -15,7 +15,7 @@ export const Welcome = defineComponent({
       Welcome1: "/welcome/2",
       Welcome2: "/welcome/3",
       Welcome3: "/welcome/4",
-      Welcome4: "/start"
+      Welcome4: "/items"
     }
     const replace = throttle(() => {
       const name = (route.name || "Welcome1").toString()
