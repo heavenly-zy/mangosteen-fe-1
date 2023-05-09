@@ -76,13 +76,13 @@ export const TimeTabsLayout = defineComponent({
                   onUpdate:selected={onSelect}
                   rerenderOnSwitch={props.rerenderOnSwitchTab}
                 >
-                  <Tab name="本月">
+                  <Tab name="本月" value="本月">
                     <props.component startDate={timeList[0].start.format()} endDate={timeList[0].end.format()} />
                   </Tab>
-                  <Tab name="上月">
+                  <Tab name="上月" value="上月">
                     <props.component startDate={timeList[1].start.format()} endDate={timeList[1].end.format()} />
                   </Tab>
-                  <Tab name="自定义时间">
+                  <Tab name="自定义时间" value="自定义时间">
                     <props.component startDate={customTime.start} endDate={customTime.end} />
                   </Tab>
                 </Tabs>
@@ -93,16 +93,16 @@ export const TimeTabsLayout = defineComponent({
                   onUpdate:selected={onSelect}
                   rerenderOnSwitch={props.rerenderOnSwitchTab}
                 >
-                  <Tab name="本月">
+                  <Tab name="本月" value="本月">
                     <props.component startDate={timeList[0].start.format()} endDate={timeList[0].end.format()} />
                   </Tab>
-                  <Tab name="上月">
+                  <Tab name="上月" value="上月">
                     <props.component startDate={timeList[1].start.format()} endDate={timeList[1].end.format()} />
                   </Tab>
-                  <Tab name="今年">
+                  <Tab name="今年" value="今年">
                     <props.component startDate={timeList[2].start.format()} endDate={timeList[2].end.format()} />
                   </Tab>
-                  <Tab name="自定义时间">
+                  <Tab name="自定义时间" value="自定义时间">
                     <props.component startDate={customTime.start} endDate={customTime.end} />
                   </Tab>
                 </Tabs>
