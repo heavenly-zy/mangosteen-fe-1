@@ -4,7 +4,7 @@ import { createRouter } from "vue-router"
 import { routes } from "./config/routes"
 import { history } from "./shared/history"
 import "@svgstore"
-import { createPinia } from "pinia"
+import { createPinia, storeToRefs } from "pinia"
 import { useMeStore } from "./stores/useMeStore"
 /* --------------------------------
 Vant 中有个别组件是以函数的形式提供的，
@@ -24,6 +24,7 @@ app.use(pinia)
 app.mount('#app')
 
 const meStore = useMeStore()
+const {mePromise} = storeToRefs(meStore)
 meStore.fetchMe()
 
 const whiteList: Record<string, "exact" | "startsWith"> = {
@@ -43,7 +44,7 @@ router.beforeEach(async (to, from) => {
       return true
     }
   }
-  return meStore.mePromise!.then(
+  return mePromise!.value!.then(
     () => true,
     () => "/sign_in?return_to=" + to.path
   )
