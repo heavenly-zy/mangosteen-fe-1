@@ -4,7 +4,8 @@ import { createRouter } from "vue-router"
 import { routes } from "./config/routes"
 import { history } from "./shared/history"
 import "@svgstore"
-import { fetchMe, mePromise } from "./shared/me"
+import { createPinia } from "pinia"
+import { useMeStore } from "./stores/useMeStore"
 /* --------------------------------
 Vant 中有个别组件是以函数的形式提供的，
 包括 Toast，Dialog，Notify 和 ImagePreview 组件。
@@ -16,7 +17,14 @@ import "vant/es/dialog/style"
 
 const router = createRouter({ history, routes })
 
-fetchMe()
+const pinia = createPinia()
+const app = createApp(App)
+app.use(router)
+app.use(pinia)
+app.mount('#app')
+
+const meStore = useMeStore()
+meStore.fetchMe()
 
 const whiteList: Record<string, "exact" | "startsWith"> = {
   "/": "exact",
@@ -35,12 +43,8 @@ router.beforeEach(async (to, from) => {
       return true
     }
   }
-  return mePromise!.then(
+  return meStore.mePromise!.then(
     () => true,
     () => "/sign_in?return_to=" + to.path
   )
 })
-
-const app = createApp(App)
-app.use(router)
-app.mount("#app")
