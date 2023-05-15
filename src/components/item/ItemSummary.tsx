@@ -51,7 +51,7 @@ export const ItemSummary = defineComponent({
       () => [props.startDate, props.endDate],
       () => {
         // refresh items
-        itemStore.reset()
+        itemStore.$reset()
         itemStore.fetchItems(props.startDate!, props.endDate!)
 
         // refresh itemsBalance
