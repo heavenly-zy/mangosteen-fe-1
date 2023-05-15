@@ -100,7 +100,7 @@ export const ItemSummary = defineComponent({
           ))}
         </ol>
         <div class={s.more}>
-          {itemStore.hasMore ? <Button onClick={() => itemStore.fetchItems(props.startDate!, props.endDate!)}>加载更多</Button> : <span>没有更多</span>}
+          {itemStore.hasMore ? <Button onClick={() => itemStore.fetchNextPage(props.startDate!, props.endDate!)}>加载更多</Button> : <span>没有更多</span>}
         </div>
       </>
     ))
