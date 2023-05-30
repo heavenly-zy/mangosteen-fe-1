@@ -23,10 +23,6 @@ export const ItemSummary = defineComponent({
     }
   },
   setup: (props, context) => {
-    // FIXME: 这里 return 会导致后面的 watch 不执行，也就是永远也监听不到 props.startDate 和 props.endDate 的变化了
-    if (!props.startDate || !props.endDate) {
-      return () => <div>请先选择时间范围</div>
-    }
     const itemStore = useItemStore(['items', props.startDate, props.endDate])
     useAfterMe(() => itemStore.fetchItems(props.startDate!, props.endDate!))
     const itemsBalance = reactive({
@@ -118,7 +114,13 @@ export const ItemSummary = defineComponent({
     )
     return () => (
       <div class={s.wrapper}>
-        {itemStore.items && itemStore.items.length > 0 ? itemsContent.value : startContent}
+        {!props.startDate || !props.endDate ? (
+          <div>请先选择时间范围</div>
+        ) : itemStore.items && itemStore.items.length > 0 ? (
+          itemsContent.value
+        ) : (
+          startContent
+        )}
         <RouterLink to="/items/create">
           <FloatButton iconName="add" />
         </RouterLink>
