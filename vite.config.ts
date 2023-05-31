@@ -7,6 +7,26 @@ import { VantResolver } from 'unplugin-vue-components/resolvers';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id: any) {
+          if (id.includes("echarts")) {
+            return "echarts"
+          }
+          if (id.includes("mock") || id.includes("faker")) {
+            return "mock"
+          }
+          if (id.includes("vant")) {
+            return "vant"
+          }
+          if (id.includes("node_modules")) {
+            return "vendor"
+          }
+        }
+      }
+    }
+  },
   plugins: [
     vue(),
     vueJsx({
@@ -16,8 +36,8 @@ export default defineConfig({
     }),
     svgstore(),
     Components({
-      resolvers: [VantResolver()],
-    }),
+      resolvers: [VantResolver()]
+    })
   ],
   server: {
     /** 设置 host: true 才可以使用 Network 的形式，以 IP 访问项目 */
@@ -31,8 +51,8 @@ export default defineConfig({
     /** 端口被占用时，是否直接退出 */
     strictPort: false,
     proxy: {
-      '/api/v1': {
-        target: 'https://mangosteen2.hunger-valley.com',
+      "/api/v1": {
+        target: "https://mangosteen2.hunger-valley.com",
         /** 绕过 https 的安全验证 */
         secure: false
       }
