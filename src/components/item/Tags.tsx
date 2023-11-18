@@ -2,7 +2,7 @@ import { defineComponent, PropType, ref } from "vue"
 import { Button } from "../../shared/Button"
 import { http } from "../../shared/Http"
 import { Icon } from "../../shared/Icon"
-import { useTags } from "../../shared/useTags"
+import { useTags } from "../../hooks/useTags"
 import s from "./Tags.module.scss"
 import { RouterLink, useRouter } from "vue-router"
 
